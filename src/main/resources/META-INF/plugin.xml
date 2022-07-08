@@ -1,0 +1,60 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.donghanx.RearrangeTab</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>RearrangeTab</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="Donghanx@usc.edu" url="https://github.com/DonghanX">DonghanX</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Provides support for grouping the Editor Tabs by file extension name or parent directory.
+    <br/><br/>
+    <ul>
+        <li>Ctrl + Alt + C Close editor tabs that have the same file name extension as the selected one.</li>
+        <li>Ctrl + Alt + R Sort and group editor tabs by their file name extension.</li>
+        <li>Ctrl + Alt + E Sort and group editor tabs by their parent directories.</li>
+    </ul>
+  ]]>
+    </description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+    <actions>
+        <action id="com.donghanx.rearrange_tab.CloseTabsWithSameSuffixAction"
+                class="com.donghanx.rearrange_tab.CloseTabsWithSameSuffixAction"
+                text="Close Same Suffix Tabs Action"
+                description="Close all the tab with the same file name extension as the selected one.">
+            <add-to-group group-id="WindowMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt C"/>
+        </action>
+        <action id="com.donghanx.rearrange_tab.TabSortBySuffixAction"
+                class="com.donghanx.rearrange_tab.SortActions$TabSortBySuffixAction"
+                text="Sort Tabs By File Name Extension"
+                description="Sort and group editor tabs by their file name extension">
+            <add-to-group group-id="WindowMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt E"/>
+        </action>
+        <action id="com.donghanx.rearrange_tab.TabSortByParentAction"
+                class="com.donghanx.rearrange_tab.SortActions$TabSortByParentAction"
+                text="Sort Tabs By Parent"
+                description="Sort and group editor tabs by their parent directories">
+            <add-to-group group-id="WindowMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt R"/>
+        </action>
+    </actions>
+</idea-plugin>
